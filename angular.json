@@ -69,6 +69,10 @@
             },
             "development": {
               "browserTarget": "tp-tacs-2022-2c-grupo-2-frontend:build:development"
+            },
+            "options": {
+              "browserTarget": "tp-tacs-2022-2c-grupo-2-frontend:build",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
