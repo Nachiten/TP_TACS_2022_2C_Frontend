@@ -1,4 +1,4 @@
-import { getApiResources } from '../app/config/api-resources-ts';
+import { getApiResources } from '../app/config/api-resources';
 
 export const environment = {
   production: true,
