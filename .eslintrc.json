@@ -17,7 +17,7 @@
 
       "rules": {
         // Un metodo puede estar vacio
-        "@typescript-eslint/no-empty-function": "warn",
+        "@typescript-eslint/no-empty-function": "off",
         // Un tipo puede estar fijado explicitamente, por más que sea inferido
         "@typescript-eslint/no-inferrable-types": "off",
         // Puede pasar que se necesite usar any al asignar o pasar argumentos
