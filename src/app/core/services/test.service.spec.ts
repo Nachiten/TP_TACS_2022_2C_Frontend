@@ -13,10 +13,10 @@ describe('TestService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
 
-    service.getHealth().subscribe(data => {
+    service.getHealth().subscribe((data) => {
       expect(data).toBe({
-        status: "Healthy!"
-      })
+        status: 'Healthy!'
+      });
     });
   });
 });

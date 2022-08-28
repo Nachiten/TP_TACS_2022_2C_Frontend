@@ -1,0 +1,37 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "html"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+
+      // Typescript plugins
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
+
+      "parserOptions": {
+        "project": ["./tsconfig.json"] // Specify it only for TypeScript files
+      },
+
+      "rules": {
+        // Un metodo puede estar vacio
+        "@typescript-eslint/no-empty-function": "warn",
+        // Un tipo puede estar fijado explicitamente, por más que sea inferido
+        "@typescript-eslint/no-inferrable-types": "off",
+        // Puede pasar que se necesite usar any al asignar o pasar argumentos
+        "@typescript-eslint/no-unsafe-assignment": "warn",
+        "@typescript-eslint/no-unsafe-argument": "warn"
+
+        // "@typescript-eslint/unbound-method": "off",
+
+        // En algunos casos, se necesita acceder a algo dentro de un tipo any
+        //"@typescript-eslint/no-unsafe-member-access": "off",
+
+        // En algunos casos es necesario usar el tipo 'any'
+        //"@typescript-eslint/no-explicit-any": "off",
+      }
+    }
+  ]
+}
