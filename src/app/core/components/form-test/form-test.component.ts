@@ -47,9 +47,9 @@ export class FormTestComponent {
 
     const match = new Match();
 
-    match.fecha = new Date(value.date ? value.date : new Date());
-    match.hora = new Date(value.time ? `2020-01-01T${value.time.toString()}` : new Date());
-    match.lugar = value.location ? value.location : '';
+    match.date = new Date(value.date ? value.date : new Date());
+    match.time = new Date(value.time ? `2020-01-01T${value.time.toString()}` : new Date());
+    match.location = value.location ? value.location : '';
 
     //console.log('MATCH: ', match);
   }
