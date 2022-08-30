@@ -14,7 +14,7 @@ describe('FormTestComponent', () => {
   let fixture: ComponentFixture<FormTestComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+    void TestBed.configureTestingModule({
       declarations: [FormTestComponent],
       imports: [
         NoopAnimationsModule,

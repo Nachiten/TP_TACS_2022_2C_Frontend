@@ -1,35 +1,73 @@
-<div class="container-sm">
-  <div class="row">
-    <form [formGroup]="newMatchForm" novalidate (ngSubmit)="onSubmit()">
-      <mat-card class="shipping-card">
-        <h1 class="text-center">Creación de partido</h1>
-        <mat-card-content>
-          <div class="row">
-            <div class="col-md-12">
-              <mat-form-field class="w-100">
-                <input type="date" matInput placeholder="Fecha" formControlName="fecha" />
-              </mat-form-field>
+<div class="container-md">
+    <div class="row mt-3">
+        <div class="col-lg-6 offset-lg-3 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Nuevo partido</h1>
+
+                    <form [formGroup]="newMatchForm" (ngSubmit)="onSubmit()">
+                        <div class="mb-3 has-validation">
+                            <label for="date" class="form-label">Fecha</label>
+                            <input
+                                type="date"
+                                class="form-control {{
+                                    getControlValidClass(newMatchForm.controls.date)
+                                }}"
+                                id="date"
+                                aria-describedby="emailHelp"
+                                formControlName="date"
+                            />
+                            <div
+                                *ngIf="controlHasError(newMatchForm.controls.date, 'required')"
+                                class="invalid-feedback"
+                            >
+                                La fecha es obligatoria
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="time" class="form-label">Hora</label>
+                            <input
+                                type="time"
+                                class="form-control {{
+                                    getControlValidClass(newMatchForm.controls.time)
+                                }}"
+                                id="time"
+                                formControlName="time"
+                            />
+                            <div
+                                *ngIf="controlHasError(newMatchForm.controls.time, 'required')"
+                                class="invalid-feedback"
+                            >
+                                La hora es obligatoria
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Lugar</label>
+                            <input
+                                type="text"
+                                class="form-control {{
+                                    getControlValidClass(newMatchForm.controls.location)
+                                }}"
+                                id="location"
+                                formControlName="location"
+                            />
+                            <div
+                                *ngIf="controlHasError(newMatchForm.controls.location, 'required')"
+                                class="invalid-feedback"
+                            >
+                                El lugar es obligatorio
+                            </div>
+                            <div
+                                *ngIf="controlHasError(newMatchForm.controls.location, 'minlength')"
+                                class="invalid-feedback"
+                            >
+                                El lugar debe tener al menos 4 caracteres
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <mat-form-field class="w-100">
-                <input type="time" matInput placeholder="Hora" formControlName="hora" />
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <mat-form-field class="w-100">
-                <input matInput placeholder="Lugar" formControlName="lugar" />
-              </mat-form-field>
-            </div>
-          </div>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button color="primary" type="submit">Submit</button>
-        </mat-card-actions>
-      </mat-card>
-    </form>
-  </div>
+        </div>
+    </div>
 </div>

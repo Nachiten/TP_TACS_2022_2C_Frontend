@@ -6,37 +6,31 @@ import {
   ɵFormGroupValue,
   ɵTypedOrUntyped
 } from '@angular/forms';
+import { Match } from '../../model/Match';
+import { controlHasError, getControlValidClass } from '../../../utils/form-utils';
 
-class Match {
-  fecha: Date;
-  hora: Date;
-  lugar: string;
-
-  constructor() {
-    this.fecha = new Date();
-    this.hora = new Date();
-    this.lugar = '';
-  }
-}
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type MatchFormType = ɵTypedOrUntyped<MatchForm, ɵFormGroupValue<MatchForm>, any>;
 
 interface MatchForm {
-  fecha: FormControl<Date | null>;
-  hora: FormControl<Date | null>;
-  lugar: FormControl<string>;
+  date: FormControl<Date | null>;
+  time: FormControl<Date | null>;
+  location: FormControl<string>;
 }
 
 @Component({
-  selector: 'app-form-test',
+  selector: 'app-form-home',
   templateUrl: './form-test.component.html',
   styleUrls: ['./form-test.component.css']
 })
 export class FormTestComponent {
+  controlHasError = controlHasError;
+  getControlValidClass = getControlValidClass;
+
   newMatchForm = new FormGroup<MatchForm>({
-    fecha: new FormControl(null, { validators: [Validators.required] }),
-    hora: new FormControl(null, { validators: [Validators.required] }),
-    lugar: new FormControl('', {
+    date: new FormControl(null, { validators: [Validators.required] }),
+    time: new FormControl(null, { validators: [Validators.required] }),
+    location: new FormControl('', {
       validators: [Validators.required, Validators.minLength(4)],
       nonNullable: true
     })
@@ -53,10 +47,10 @@ export class FormTestComponent {
 
     const match = new Match();
 
-    match.fecha = new Date(value.fecha ? value.fecha : new Date());
-    match.hora = new Date(value.hora ? `2020-01-01T${value.hora}` : new Date());
-    match.lugar = value.lugar ? value.lugar : '';
+    match.fecha = new Date(value.date ? value.date : new Date());
+    match.hora = new Date(value.time ? `2020-01-01T${value.time.toString()}` : new Date());
+    match.lugar = value.location ? value.location : '';
 
-    console.log('MATCH: ', match);
+    //console.log('MATCH: ', match);
   }
 }

@@ -1,5 +1,5 @@
 export const getApiResources = () => ({
   test: {
-    getHealth: () => '/api/test/health'
+    getHealth: () => '/api/home/health'
   }
 });

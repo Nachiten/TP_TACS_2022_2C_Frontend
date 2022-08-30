@@ -22,9 +22,10 @@
         "@typescript-eslint/no-inferrable-types": "off",
         // Puede pasar que se necesite usar any al asignar o pasar argumentos
         "@typescript-eslint/no-unsafe-assignment": "warn",
-        "@typescript-eslint/no-unsafe-argument": "warn"
+        "@typescript-eslint/no-unsafe-argument": "warn",
 
-        // "@typescript-eslint/unbound-method": "off",
+        // Error específico de angular
+        "@typescript-eslint/unbound-method": "off"
 
         // En algunos casos, se necesita acceder a algo dentro de un tipo any
         //"@typescript-eslint/no-unsafe-member-access": "off",
