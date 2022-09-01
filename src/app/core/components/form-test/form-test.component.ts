@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Match } from '../../model/Match';
 import { controlHasError, getControlValidClass } from '../../../utils/form-utils';
+import { MatchService } from '../../services/match.service';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type MatchFormType = ɵTypedOrUntyped<MatchForm, ɵFormGroupValue<MatchForm>, any>;
@@ -36,7 +37,7 @@ export class FormTestComponent {
     })
   });
 
-  constructor() {}
+  constructor(private readonly matchService: MatchService) {}
 
   onSubmit(): void {
     if (!this.newMatchForm.valid) return;
@@ -52,5 +53,14 @@ export class FormTestComponent {
     match.location = value.location ? value.location : '';
 
     //console.log('MATCH: ', match);
+
+    this.matchService.createMatch(match).subscribe({
+      next: (match: Match) => {
+        console.log('Match created: ', match);
+      },
+      error: (error: any) => {
+        console.log('Error: ', error);
+      }
+    });
   }
 }
