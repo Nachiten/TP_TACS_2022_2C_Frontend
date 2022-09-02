@@ -1,9 +1,11 @@
+const apiURL = 'http://localhost:3000';
+
 export const getApiResources = () => ({
   test: {
-    getHealth: () => '/api/test/health'
+    getHealth: () => apiURL + '/api/test/health'
   },
   matches: {
-    matches: () => '/api/matches',
-    matchById: (id: string) => `/api/matches/${id}`
+    matches: () => apiURL + '/api/matches',
+    matchById: (id: string) => apiURL + `/api/matches/${id}`
   }
 });

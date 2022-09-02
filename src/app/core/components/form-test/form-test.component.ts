@@ -49,7 +49,7 @@ export class FormTestComponent {
     const match = new Match();
 
     match.date = new Date(value.date ? value.date : new Date());
-    match.time = new Date(value.time ? `2020-01-01T${value.time.toString()}` : new Date());
+    match.time = new Date(value.time ? `2000-01-01T${value.time.toString()}` : new Date());
     match.location = value.location ? value.location : '';
 
     //console.log('MATCH: ', match);
