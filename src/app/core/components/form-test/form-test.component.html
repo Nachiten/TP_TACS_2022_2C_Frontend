@@ -10,17 +10,12 @@
                             <label for="date" class="form-label">Fecha</label>
                             <input
                                 type="date"
-                                class="form-control {{
-                                    getControlValidClass(newMatchForm.controls.date)
-                                }}"
+                                class="form-control {{ getControlValidClass(controls.date) }}"
                                 id="date"
                                 aria-describedby="emailHelp"
-                                formControlName="date"
+                                [formControl]="controls.date"
                             />
-                            <div
-                                *ngIf="controlHasError(newMatchForm.controls.date, 'required')"
-                                class="invalid-feedback"
-                            >
+                            <div *ngIf="controlHasError(controls.date)" class="invalid-feedback">
                                 La fecha es obligatoria
                             </div>
                         </div>
@@ -28,16 +23,11 @@
                             <label for="time" class="form-label">Hora</label>
                             <input
                                 type="time"
-                                class="form-control {{
-                                    getControlValidClass(newMatchForm.controls.time)
-                                }}"
+                                class="form-control {{ getControlValidClass(controls.time) }}"
                                 id="time"
-                                formControlName="time"
+                                [formControl]="controls.time"
                             />
-                            <div
-                                *ngIf="controlHasError(newMatchForm.controls.time, 'required')"
-                                class="invalid-feedback"
-                            >
+                            <div *ngIf="controlHasError(controls.time)" class="invalid-feedback">
                                 La hora es obligatoria
                             </div>
                         </div>
@@ -45,20 +35,18 @@
                             <label for="location" class="form-label">Lugar</label>
                             <input
                                 type="text"
-                                class="form-control {{
-                                    getControlValidClass(newMatchForm.controls.location)
-                                }}"
+                                class="form-control {{ getControlValidClass(controls.location) }}"
                                 id="location"
-                                formControlName="location"
+                                [formControl]="controls.location"
                             />
                             <div
-                                *ngIf="controlHasError(newMatchForm.controls.location, 'required')"
+                                *ngIf="controlHasError(controls.location, 'required')"
                                 class="invalid-feedback"
                             >
                                 El lugar es obligatorio
                             </div>
                             <div
-                                *ngIf="controlHasError(newMatchForm.controls.location, 'minlength')"
+                                *ngIf="controlHasError(controls.location, 'minlength')"
                                 class="invalid-feedback"
                             >
                                 El lugar debe tener al menos 4 caracteres

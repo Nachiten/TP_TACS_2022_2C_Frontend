@@ -5,6 +5,6 @@ export const getControlValidClass = (control: FormControl<any>): string => {
   return control.valid ? 'is-valid' : 'is-invalid';
 };
 
-export const controlHasError = (control: FormControl<any>, error: string): boolean => {
+export const controlHasError = (control: FormControl<any>, error: string = 'required'): boolean => {
   return control.touched && control.hasError(error);
 };
