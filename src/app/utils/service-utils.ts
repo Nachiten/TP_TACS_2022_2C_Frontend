@@ -1,22 +1,14 @@
 export const dateToSqlDateTime = (date: Date): string => {
-  return date.toISOString().slice(0, -1) + '+00:00';
+  return date.toISOString().slice(0, -1);
 };
 
 export const dateToSqlDate = (date: Date): string => {
-  const newDate = date.toISOString().slice(0, -14)
-
-  console.log("SQL DATE: " + newDate);
-
-  return newDate;
+  return date.toISOString().slice(0, -14);
 };
 
 export const dateToSqlTime = (date: Date): string => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
 
-  const newTime = `${hours}:${minutes}:00`;
-
-  console.log("SQL TIME: " + newTime);
-
-  return newTime;
+  return `${hours}:${minutes}:00`;
 };

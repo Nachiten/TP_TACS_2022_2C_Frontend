@@ -11,10 +11,7 @@ describe('FormTestComponent', () => {
   beforeEach(waitForAsync(() => {
     void TestBed.configureTestingModule({
       declarations: [FormTestComponent],
-      imports: [
-        NoopAnimationsModule,
-        ReactiveFormsModule,
-      ]
+      imports: [NoopAnimationsModule, ReactiveFormsModule]
     }).compileComponents();
   }));
 

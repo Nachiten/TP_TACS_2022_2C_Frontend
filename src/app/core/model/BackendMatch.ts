@@ -1,13 +1,13 @@
 export class BackendMatch {
   id?: number;
-  date: string;
-  time: string;
+  startingDate: string;
+  startingTime: string;
   location: string;
 
   constructor() {
     this.id = 0;
-    this.date = '';
-    this.time = '';
+    this.startingDate = '';
+    this.startingTime = '';
     this.location = '';
   }
 }
