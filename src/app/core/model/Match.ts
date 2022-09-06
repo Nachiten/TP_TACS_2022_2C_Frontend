@@ -1,11 +1,13 @@
 export class Match {
-  fecha: Date;
-  hora: Date;
-  lugar: string;
+  id: number;
+  date: Date;
+  time: Date;
+  location: string;
 
   constructor() {
-    this.fecha = new Date();
-    this.hora = new Date();
-    this.lugar = '';
+    this.id = 0;
+    this.date = new Date();
+    this.time = new Date();
+    this.location = '';
   }
 }
