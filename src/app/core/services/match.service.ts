@@ -4,7 +4,7 @@ import { Match } from '../model/Match';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { BackendMatch } from '../model/BackendMatch';
-import { dateToSqlDate, dateToSqlDateTime } from '../../utils/service-utils';
+import { dateToBackendDateTime } from '../../utils/service-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,7 @@ export class MatchService {
 
     delete backendMatch.id;
 
-    backendMatch.startingDate = dateToSqlDate(match.date);
-    backendMatch.startingTime = dateToSqlDateTime(match.time);
+    backendMatch.startingDateTime = dateToBackendDateTime(match.dateTime);
     backendMatch.location = match.location;
 
     return this.http.post<Match>(environment.apiResources.matches.matches(), backendMatch);

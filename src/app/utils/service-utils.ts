@@ -1,12 +1,12 @@
-export const dateToSqlDateTime = (date: Date): string => {
+export const dateToBackendDateTime = (date: Date): string => {
   return date.toISOString().slice(0, -1);
 };
 
-export const dateToSqlDate = (date: Date): string => {
+export const dateToBackendDate = (date: Date): string => {
   return date.toISOString().slice(0, -14);
 };
 
-export const dateToSqlTime = (date: Date): string => {
+export const dateToBackendTime = (date: Date): string => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
 

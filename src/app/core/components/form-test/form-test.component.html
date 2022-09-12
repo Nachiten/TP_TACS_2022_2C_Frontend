@@ -7,28 +7,19 @@
 
                     <form [formGroup]="newMatchForm" (ngSubmit)="onSubmit()">
                         <div class="mb-3 has-validation">
-                            <label for="date" class="form-label">Fecha</label>
+                            <label for="date" class="form-label">Fecha y Hora</label>
                             <input
-                                type="date"
-                                class="form-control {{ getControlValidClass(controls.date) }}"
+                                type="dateTime-local"
+                                class="form-control {{ getControlValidClass(controls.dateTime) }}"
                                 id="date"
                                 aria-describedby="emailHelp"
-                                [formControl]="controls.date"
+                                [formControl]="controls.dateTime"
                             />
-                            <div *ngIf="controlHasError(controls.date)" class="invalid-feedback">
-                                La fecha es obligatoria
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="time" class="form-label">Hora</label>
-                            <input
-                                type="time"
-                                class="form-control {{ getControlValidClass(controls.time) }}"
-                                id="time"
-                                [formControl]="controls.time"
-                            />
-                            <div *ngIf="controlHasError(controls.time)" class="invalid-feedback">
-                                La hora es obligatoria
+                            <div
+                                *ngIf="controlHasError(controls.dateTime)"
+                                class="invalid-feedback"
+                            >
+                                La fecha y hora es obligatoria
                             </div>
                         </div>
                         <div class="mb-3">

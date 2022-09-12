@@ -11,12 +11,10 @@ import { controlHasError, getControlValidClass } from '../../../utils/form-utils
 import { MatchService } from '../../services/match.service';
 import { ToastrService } from 'ngx-toastr';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-//type MatchFormType = ɵTypedOrUntyped<MatchForm, ɵFormGroupValue<MatchForm>, any>;
+type MatchFormType = ɵTypedOrUntyped<MatchForm, ɵFormGroupValue<MatchForm>, any>;
 
 interface MatchForm {
-  date: FormControl<string>;
-  time: FormControl<string>;
+  dateTime: FormControl<string>;
   location: FormControl<string>;
 }
 
@@ -30,8 +28,7 @@ export class FormTestComponent {
   getControlValidClass = getControlValidClass;
 
   newMatchForm = new FormGroup<MatchForm>({
-    date: new FormControl('', { validators: [Validators.required], nonNullable: true }),
-    time: new FormControl('', { validators: [Validators.required], nonNullable: true }),
+    dateTime: new FormControl('', { validators: [Validators.required], nonNullable: true }),
     location: new FormControl('', {
       validators: [Validators.required, Validators.minLength(4)],
       nonNullable: true
@@ -57,18 +54,19 @@ export class FormTestComponent {
 
     console.log('Form valid. Submitting...');
 
-    const value = this.newMatchForm.value;
+    const value: MatchFormType = this.newMatchForm.value;
 
     const match = new Match();
 
-    match.date = new Date(value.date as string);
-    match.time = new Date(`2000-01-01T${value.time?.toString()}`);
-    match.location = value.location as string;
+    console.log('Date time: ', value.dateTime);
 
-    //console.log('MATCH: ', match);
+    match.dateTime = new Date(value.dateTime as string);
+    match.location = value.location as string;
 
     this.matchService.createMatch(match).subscribe({
       next: (match: Match) => {
+        // TODO - Check if match was created correctly
+
         console.log('Match created: ', match);
 
         const idString: string = match.id.toString();
@@ -84,6 +82,8 @@ export class FormTestComponent {
       },
       error: (error: any) => {
         console.log('Error: ', error);
+
+        this.toastr.error(`Ocurrió un error interno al procesar la solicitud`, 'Error!');
       }
     });
   }
