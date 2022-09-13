@@ -1,5 +1,7 @@
 .angular/
 .vscode/
+.idea/
 node_modules/
-sonar.sh
 .git/
+sonar.sh
+pre-commit.pyz
