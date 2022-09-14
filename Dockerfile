@@ -1,8 +1,16 @@
 # Stage 1 - Build the app
 FROM node:alpine AS app-build
+
 WORKDIR /app
-COPY . .
-RUN npm ci && npm run build
+
+COPY ./package.json .
+RUN npm install
+
+COPY ["./angular.json", "./tsconfig.json", "./tsconfig.app.json", "./"]
+COPY nginx/default.conf nginx/default.conf
+COPY src/ src/
+
+RUN npm run build
 
 # Stage 2 - Run the app
 FROM nginx:alpine
