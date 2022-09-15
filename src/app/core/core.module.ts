@@ -5,11 +5,12 @@ import { CoreRoutingModule } from './core-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
-import { FormTestComponent } from './components/form-test/form-test.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NewPlayerFormComponent } from './components/new-player-form/new-player-form.component';
+import { NewMatchFormComponent } from './components/new-match-form/new-match-form.component';
 
 @NgModule({
-  declarations: [HomeComponent, FormTestComponent],
+  declarations: [HomeComponent, NewPlayerFormComponent, NewMatchFormComponent],
   imports: [CommonModule, CoreRoutingModule, HttpClientModule, LayoutModule, ReactiveFormsModule]
 })
 export class CoreModule {}

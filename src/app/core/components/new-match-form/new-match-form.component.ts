@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -6,10 +6,10 @@ import {
   ɵFormGroupValue,
   ɵTypedOrUntyped
 } from '@angular/forms';
-import { Match } from '../../model/Match';
 import { controlHasError, getControlValidClass } from '../../../utils/form-utils';
-import { MatchService } from '../../services/match.service';
 import { ToastrService } from 'ngx-toastr';
+import { Match } from '../../model/Match';
+import { MatchService } from '../../services/match.service';
 
 type MatchFormType = ɵTypedOrUntyped<MatchForm, ɵFormGroupValue<MatchForm>, any>;
 
@@ -19,11 +19,11 @@ interface MatchForm {
 }
 
 @Component({
-  selector: 'app-form-home',
-  templateUrl: './form-test.component.html',
-  styleUrls: ['./form-test.component.css']
+  selector: 'app-new-match-form',
+  templateUrl: './new-match-form.component.html',
+  styleUrls: ['./new-match-form.component.css']
 })
-export class FormTestComponent {
+export class NewMatchFormComponent {
   controlHasError = controlHasError;
   getControlValidClass = getControlValidClass;
 
