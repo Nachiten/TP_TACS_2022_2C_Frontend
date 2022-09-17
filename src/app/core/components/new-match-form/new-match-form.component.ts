@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -10,6 +10,7 @@ import { controlHasError, getControlValidClass } from '../../../utils/form-utils
 import { ToastrService } from 'ngx-toastr';
 import { Match } from '../../model/Match';
 import { MatchService } from '../../services/match.service';
+import { dateToBackendDateTime } from '../../../utils/service-utils';
 
 type MatchFormType = ɵTypedOrUntyped<MatchForm, ɵFormGroupValue<MatchForm>, any>;
 
@@ -26,6 +27,8 @@ interface MatchForm {
 export class NewMatchFormComponent {
   controlHasError = controlHasError;
   getControlValidClass = getControlValidClass;
+
+  resultMessage: string = '';
 
   newMatchForm = new FormGroup<MatchForm>({
     dateTime: new FormControl('', { validators: [Validators.required], nonNullable: true }),
@@ -46,7 +49,7 @@ export class NewMatchFormComponent {
     if (!this.newMatchForm.valid) {
       console.log('Invalid form. Canceling submit.');
 
-      this.toastr.error('Debe corregir todos los errores antes de guardar', 'Error!');
+      this.toastr.error('Debe corregir todos los errores antes de continuar', 'Error!');
       this.newMatchForm.markAllAsTouched();
 
       return;
@@ -67,22 +70,37 @@ export class NewMatchFormComponent {
       next: (match: Match) => {
         console.log('Match created: ', match);
 
-        const idString: string = match.id.toString();
-
-        // Replace middle characters with "..." from id, only keep first and last 4
-        const charsCount = 4;
-        const idCut =
-          idString.substring(0, charsCount) +
-          '...' +
-          idString.substring(idString.length - charsCount, idString.length);
-
-        this.toastr.success(`El partido fue creado correctamente con id: ${idCut}`, 'Éxito!');
+        //this.toastr.success(`El partido fue creado correctamente con id: ${idCut}`, 'Éxito!');
+        this.resultMessage = `El partido fue creado correctamente con id: ${match.id}`;
       },
       error: (error: any) => {
         console.log('Error: ', error);
 
-        this.toastr.error(`Ocurrió un error interno al procesar la solicitud`, 'Error!');
+        if (!error.error || !error.error.errorCode) {
+          this.toastr.error(`Ocurrió un error interno al procesar la solicitud`, 'Error!');
+          return;
+        }
+
+        switch (error.error.errorCode) {
+          case 'MATCH_EXISTENT':
+            this.toastr.error('Ya existe un partido con los mismos datos', 'Error!');
+            break;
+          case 'INVALID_MATCH_DATE':
+            this.toastr.error(
+              'La fecha del partido no puede ser anterior a la fecha actual',
+              'Error!'
+            );
+            break;
+          default:
+            this.toastr.error('Ocurrió un error al crear el partido', 'Error!');
+        }
       }
     });
+  }
+
+  getDateNow(): string {
+    const date = dateToBackendDateTime(new Date());
+
+    return date.substring(0, date.length - 7);
   }
 }
