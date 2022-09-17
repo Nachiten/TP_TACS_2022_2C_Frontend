@@ -83,11 +83,11 @@ export class NewMatchFormComponent {
 
         switch (error.error.errorCode) {
           case 'MATCH_EXISTENT':
-            this.toastr.error('Ya existe un partido con esa fecha y hora', 'Error!');
+            this.toastr.error('Ya existe un partido con los mismos datos', 'Error!');
             break;
           case 'INVALID_MATCH_DATE':
             this.toastr.error(
-              'La fecha y hora del partido no pueden ser anteriores a la fecha y hora actual',
+              'La fecha del partido no puede ser anterior a la fecha actual',
               'Error!'
             );
             break;
