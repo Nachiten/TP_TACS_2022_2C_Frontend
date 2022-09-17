@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './core/core.module';
-import { AuthModule } from './auth/auth.module';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     CoreModule,
-    AuthModule,
     ToastrModule.forRoot()
   ],
   providers: [],
