@@ -65,8 +65,6 @@ export class NewMatchFormComponent {
 
     this.matchService.createMatch(match).subscribe({
       next: (match: Match) => {
-        // TODO - Check if match was created correctly
-
         console.log('Match created: ', match);
 
         const idString: string = match.id.toString();

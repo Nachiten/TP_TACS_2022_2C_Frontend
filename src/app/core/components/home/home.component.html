@@ -1,18 +1,23 @@
-<h1>Home component (/) [MOCK]</h1>
-<a class="btn btn-primary" routerLink="/new-match">Crear un nuevo partido</a>
-<br /><br />
-<form [formGroup]="newPlayerLinkForm" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-        <input
-            type="text"
-            class="form-control {{ getControlValidClass(controls.id) }}"
-            id="id"
-            [formControl]="controls.id"
-            placeholder="Inserte el ID del partido"
-        />
-        <div *ngIf="controlHasError(controls.id, 'required')" class="invalid-feedback">
-            El lugar es obligatorio
+<div class="container-xl">
+    <div class="row mt-3">
+        <div class="col-xl-8 offset-xl-2">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Sistema de gestión de partidos</h1>
+                    <div class="row">
+                        <div class="col-4 offset-4">
+                            <div class="d-flex flex-column">
+                                <button class="btn btn-primary mt-2" routerLink="/new-match">
+                                    Crear un nuevo partido
+                                </button>
+                                <button class="btn btn-primary mt-4" routerLink="/signup-match">
+                                    Anotarse a un partido
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Anotarse a un partido</button>
-</form>
+</div>

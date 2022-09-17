@@ -7,12 +7,11 @@
 
                     <form [formGroup]="newMatchForm" (ngSubmit)="onSubmit()">
                         <div class="mb-3 has-validation">
-                            <label for="date" class="form-label">Fecha y Hora</label>
+                            <label [for]="controls.dateTime" class="form-label">Fecha y Hora</label>
                             <input
                                 type="dateTime-local"
                                 class="form-control {{ getControlValidClass(controls.dateTime) }}"
-                                id="date"
-                                aria-describedby="emailHelp"
+                                [id]="controls.dateTime"
                                 [formControl]="controls.dateTime"
                             />
                             <div
@@ -25,6 +24,7 @@
                         <div class="mb-3">
                             <label for="location" class="form-label">Lugar</label>
                             <input
+                                placeholder="Ubicacion del partido"
                                 type="text"
                                 class="form-control {{ getControlValidClass(controls.location) }}"
                                 id="location"
@@ -43,7 +43,7 @@
                                 El lugar debe tener al menos 4 caracteres
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary">Crear partido</button>
                     </form>
                 </div>
             </div>

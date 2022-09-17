@@ -14,7 +14,7 @@ const routes: Routes = [
     component: NewMatchFormComponent
   },
   {
-    path: 'new-player/:id',
+    path: 'signup-match',
     component: NewPlayerFormComponent
   }
 ];

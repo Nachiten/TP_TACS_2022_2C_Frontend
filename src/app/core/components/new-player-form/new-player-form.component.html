@@ -1,1 +1,89 @@
-<p>new-player-form works!</p>
+<div class="container-xl">
+    <div class="row mt-3">
+        <div class="col-xl-8 offset-xl-2">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Anotarse a un partido</h1>
+
+                    <form [formGroup]="newPlayerLinkForm" (ngSubmit)="onSubmit()">
+                        <div class="mb-3 has-validation">
+                            <label [for]="controls.matchId" class="form-label"
+                                >Id del partido</label
+                            >
+                            <input
+                                type="text"
+                                placeholder="01G...7KS"
+                                class="form-control {{ getControlValidClass(controls.matchId) }}"
+                                [id]="controls.matchId"
+                                [formControl]="controls.matchId"
+                            />
+                            <div *ngIf="controlHasError(controls.matchId)" class="invalid-feedback">
+                                El id del partido es obligatorio
+                            </div>
+                        </div>
+
+                        <div class="mb-3 has-validation">
+                            <label [for]="controls.email" class="form-label">Email</label>
+                            <input
+                                type="email"
+                                placeholder="nombre@ejemplo.com"
+                                class="form-control {{ getControlValidClass(controls.email) }}"
+                                [id]="controls.email"
+                                [formControl]="controls.email"
+                            />
+                            <div
+                                *ngIf="controlHasError(controls.email, 'required')"
+                                class="invalid-feedback"
+                            >
+                                El email es obligatorio
+                            </div>
+                            <div
+                                *ngIf="controlHasError(controls.email, 'email')"
+                                class="invalid-feedback"
+                            >
+                                El email debe ser valido
+                            </div>
+                        </div>
+
+                        <div class="mb-3 has-validation">
+                            <label [for]="controls.phoneNumber" class="form-label"
+                                >Numero de teléfono</label
+                            >
+                            <input
+                                placeholder="91112345678"
+                                type="number"
+                                step="1"
+                                min="1000"
+                                max="999999999999"
+                                class="form-control {{
+                                    getControlValidClass(controls.phoneNumber)
+                                }}"
+                                [id]="controls.phoneNumber"
+                                [formControl]="controls.phoneNumber"
+                            />
+                            <div
+                                *ngIf="controlHasError(controls.phoneNumber, 'required')"
+                                class="invalid-feedback"
+                            >
+                                El numero de teléfono es obligatorio
+                            </div>
+                            <div
+                                *ngIf="controlHasError(controls.phoneNumber, 'min')"
+                                class="invalid-feedback"
+                            >
+                                El numero de teléfono debe tener al menos 4 dígitos
+                            </div>
+                            <div
+                                *ngIf="controlHasError(controls.phoneNumber, 'max')"
+                                class="invalid-feedback"
+                            >
+                                El numero de teléfono debe tener 12 o menos dígitos
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Anotarse al partido</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
