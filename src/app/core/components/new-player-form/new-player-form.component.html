@@ -82,6 +82,12 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Anotarse al partido</button>
                     </form>
+
+                    <div class="alert alert-success mt-4" *ngIf="resultMessage">
+                        <p class="text-center">
+                            {{ resultMessage }}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
