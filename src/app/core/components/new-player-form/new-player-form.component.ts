@@ -1,3 +1,4 @@
+import { ErrorCode } from './../../model/ErrorCode';
 import { Player } from './../../model/Player';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
@@ -53,7 +54,7 @@ export class NewPlayerFormComponent {
       return;
     }
 
-    console.log('Form valid. Redirecting...');
+    console.log('Form valid. ');
 
     const values = this.newPlayerLinkForm.value;
     const player = new Player();
@@ -83,19 +84,19 @@ export class NewPlayerFormComponent {
         }
 
         switch (error.error.errorCode) {
-          case 'MATCH_FULL':
+          case ErrorCode.MATCH_FULL:
             this.toastr.error('El partido ya está lleno', 'Error!');
             break;
-          case 'MATCH_NOT_FOUND':
+          case ErrorCode.MATCH_NOT_FOUND:
             this.toastr.error('El partido indicado no existe', 'Error!');
             break;
-          case 'PLAYER_EXISTENT':
+          case ErrorCode.PLAYER_EXISTENT:
             this.toastr.error(
               'El jugador ya se encuentra anotado (Ya hay un jugador con ese email o teléfono)',
               'Error!'
             );
             break;
-          case 'INVALID_BODY':
+          case ErrorCode.INVALID_BODY:
             this.toastr.error('Uno de los campos requeridos no se envió correctamente', 'Error!');
             break;
           default:

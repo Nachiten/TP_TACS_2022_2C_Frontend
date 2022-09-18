@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Match } from '../../model/Match';
 import { MatchService } from '../../services/match.service';
 import { dateToBackendDateTime } from '../../../utils/service-utils';
+import { ErrorCode } from '../../model/ErrorCode';
 
 type MatchFormType = ɵTypedOrUntyped<MatchForm, ɵFormGroupValue<MatchForm>, any>;
 
@@ -70,22 +71,23 @@ export class NewMatchFormComponent {
       next: (match: Match) => {
         console.log('Match created: ', match);
 
-        //this.toastr.success(`El partido fue creado correctamente con id: ${idCut}`, 'Éxito!');
         this.resultMessage = `El partido fue creado correctamente con id: ${match.id}`;
       },
       error: (error: any) => {
         console.log('Error: ', error);
 
+        // Error must have errorCode
         if (!error.error || !error.error.errorCode) {
           this.toastr.error(`Ocurrió un error interno al procesar la solicitud`, 'Error!');
           return;
         }
 
+        // Error code returned from backend
         switch (error.error.errorCode) {
-          case 'MATCH_EXISTENT':
+          case ErrorCode.MATCH_EXISTENT:
             this.toastr.error('Ya existe un partido con los mismos datos', 'Error!');
             break;
-          case 'INVALID_MATCH_DATE':
+          case ErrorCode.INVALID_MATCH_DATE:
             this.toastr.error(
               'La fecha del partido no puede ser anterior a la fecha actual',
               'Error!'
