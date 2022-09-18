@@ -47,10 +47,8 @@ export class NewPlayerFormComponent {
       return;
     }
 
-    console.log('Form valid. Redirecting...');
+    console.log('Form valid. ');
 
-    const id: string = this.newPlayerLinkForm.value.matchId as string;
-
-    this.router.navigate(['new-player', id]);
+    // Send request to backend
   }
 }
