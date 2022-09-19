@@ -84,9 +84,7 @@
                     </form>
 
                     <div class="alert alert-success mt-4" *ngIf="resultMessage">
-                        <p class="text-center">
-                            {{ resultMessage }}
-                        </p>
+                        <p class="" [innerHTML]="resultMessage"></p>
                     </div>
                 </div>
             </div>

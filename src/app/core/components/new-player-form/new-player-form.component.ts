@@ -71,9 +71,15 @@ export class NewPlayerFormComponent {
       next: (player: Player) => {
         console.log('Player created: ', player);
 
-        const regularStatusText: string = player.isRegular ? 'titular' : 'suplente';
+        const regularStatusText: string = player.isRegular ? 'Titular' : 'Suplente';
 
-        this.resultMessage = `El jugador fue anotado correctamente con el email ${player.email} y el telefono ${player.phoneNumber}. El jugador será ${regularStatusText}.`;
+        this.resultMessage = `El jugador fue anotado correctamente con los siguientes datos:
+        <ul>
+        <li>Id de partido: ${player.matchId}</li>
+        <li>Numero de telefono: ${player.phoneNumber}</li>
+        <li>Email: ${player.email}</li>
+        <li>Tipo de jugador: ${regularStatusText}</li>
+        </ul>`;
       },
       error: (error: any) => {
         console.log('Error: ', error);
