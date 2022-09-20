@@ -25,7 +25,8 @@ export class NewPlayerFormComponent {
 
   constructor(
     private readonly matchService: MatchService,
-    private readonly toastr: ToastrService
+    private readonly toastr: ToastrService,
+    private readonly router: Router
   ) {}
 
   newPlayerLinkForm = new FormGroup<NewPlayerForm>({
@@ -110,5 +111,9 @@ export class NewPlayerFormComponent {
         }
       }
     });
+  }
+
+  goHome(): void {
+    void this.router.navigate(['/']);
   }
 }

@@ -1,5 +1,5 @@
-// const apiURL = 'http://192.168.92.2:3000';
-const apiURL = 'http://localhost:3000';
+const apiURL = 'http://192.168.92.2:3000';
+// const apiURL = 'http://localhost:3000';
 
 export const getApiResources = () => ({
   test: {
@@ -8,6 +8,6 @@ export const getApiResources = () => ({
   matches: {
     matches: () => apiURL + '/api/matches',
     matchById: (id: string) => apiURL + `/api/matches/${id}`,
-    playersByMatch: (id: string) => apiURL + `/api/matches/${id}/players`
+    matchPlayers: (id: string) => apiURL + `/api/matches/${id}/players`
   }
 });
