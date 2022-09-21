@@ -8,9 +8,10 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewPlayerFormComponent } from './components/new-player-form/new-player-form.component';
 import { NewMatchFormComponent } from './components/new-match-form/new-match-form.component';
+import { MatchDetailsFormComponent } from './components/match-details-form/match-details-form.component';
 
 @NgModule({
-  declarations: [HomeComponent, NewPlayerFormComponent, NewMatchFormComponent],
+  declarations: [HomeComponent, NewPlayerFormComponent, NewMatchFormComponent, MatchDetailsFormComponent],
   imports: [CommonModule, CoreRoutingModule, HttpClientModule, LayoutModule, ReactiveFormsModule]
 })
 export class CoreModule {}
