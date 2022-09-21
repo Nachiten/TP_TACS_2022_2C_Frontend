@@ -24,7 +24,7 @@ interface MatchForm {
 @Component({
   selector: 'app-new-match-form',
   templateUrl: './new-match-form.component.html',
-  styleUrls: ['./new-match-form.component.css']
+  styleUrls: ['./new-match-form.component.scss']
 })
 export class NewMatchFormComponent {
   controlHasError = controlHasError;

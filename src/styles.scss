@@ -1,0 +1,32 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+$theme-colors: (
+  "primary": $purple-600,
+  "danger": #ff4136,
+  "secondary": $teal-300,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "light":      $light,
+  "dark":       $dark
+);
+@import "bootstrap";
+@import 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700&display=swap';
+
+body {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+label {
+  font-weight: 500;
+}
+
+h1, h2, h3, h4, h5, h6, input, label {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important;
+}
+
+* > :not(button) {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}
