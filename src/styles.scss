@@ -1,4 +1,6 @@
-@import "node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
 
 $theme-colors: (
   "primary": $purple-600,
@@ -19,14 +21,4 @@ body {
 
 label {
   font-weight: 500;
-}
-
-h1, h2, h3, h4, h5, h6, input, label {
-  --bs-text-opacity: 1;
-  color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important;
-}
-
-* > :not(button) {
-  --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
 }
