@@ -22,3 +22,12 @@ body {
 label {
   font-weight: 500;
 }
+
+button {
+  font-weight: 600 !important;
+  border-width: 0.2rem !important;
+}
+
+h1 {
+  color: $gray-800;
+}
