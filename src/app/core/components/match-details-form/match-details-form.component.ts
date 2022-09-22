@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { controlHasError, getControlValidClass } from 'src/app/utils/form-utils';
-import { ErrorCode } from '../../model/ErrorCode';
 import { MatchService } from '../../services/match.service';
+import { MatchDetails } from '../../model/MatchDetails';
 
 @Component({
   selector: 'app-match-details-form',
@@ -13,7 +13,7 @@ import { MatchService } from '../../services/match.service';
 export class MatchDetailsFormComponent implements OnInit {
   controlHasError = controlHasError;
   getControlValidClass = getControlValidClass;
-  matchDetails: any = null;
+  matchDetails?: MatchDetails;
 
   constructor(
     private readonly toastr: ToastrService,
@@ -50,7 +50,7 @@ export class MatchDetailsFormComponent implements OnInit {
     }
 
     this.matchService.getMatchById(matchID).subscribe({
-        next: (match: any) => {
+        next: (match: MatchDetails) => {
           this.matchDetails = match;
           console.log(this.matchDetails)
           console.log(`found match ${matchID}`)
@@ -58,15 +58,22 @@ export class MatchDetailsFormComponent implements OnInit {
         error: (error: any) => {
           console.log('Error: ', error);
   
-          if(error.error.errorCode === ErrorCode.MATCH_NOT_FOUND) {
-            this.toastr.error(`No se encontró un partido con esa ID`, 'Error!');
+          this.matchDetailsForm.controls["matchId"].setErrors({ 'incorrect': true })
+          this.matchDetails = undefined
+
+          if (!error.error || !error.error.errorCode) {
+            this.toastr.error(`Ocurrió un error interno al procesar la solicitud`, 'Error!');
             return;
           }
 
-          this.toastr.error(`Ocurrió un error interno al procesar la solicitud`, 'Error!');
+          this.toastr.error(`No se encontró un partido con esa ID`, 'Error!');
           return;
         }
       })
+  }
+
+  parseMatchDate(): string {
+    return this.matchDetails ? new Date(this.matchDetails.startingDateTime).toLocaleString() : ''
   }
 
 }
