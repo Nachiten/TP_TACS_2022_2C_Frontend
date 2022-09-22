@@ -1,34 +1,73 @@
 <div class="container-xl">
-  <div class="row mt-3">
-      <div class="col-xl-8 offset-xl-2">
-          <div class="card">
-              <div class="card-body">
-                  <h1 class="text-center">Ver detalles de un partido</h1>
- 
-                  <form [formGroup]="matchDetailsForm" (ngSubmit)="onSubmit()">
-                      <div class="mb-3 has-validation">
-                          <label [for]="controls.matchId" class="form-label"
-                              >Id del partido</label
-                          >
-                          <input
-                              type="text"
-                              placeholder="01G...7KS"
-                              class="form-control {{ getControlValidClass(controls.matchId) }}"
-                              [id]="controls.matchId"
-                              [formControl]="controls.matchId"
-                          />
-                          <div *ngIf="controlHasError(controls.matchId)" class="invalid-feedback">
-                              El id del partido es obligatorio
-                          </div>
-                      </div>
+    <div class="row mt-3">
+        <div class="col-xl-8 offset-xl-2">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Ver detalles de un partido</h1>
 
-                      <button type="submit" class="btn btn-primary">Ver detalles</button>
-                  </form>
-              </div>
-          </div>
-          <div class="alert alert-success mt-4" *ngIf="matchDetails">
-            <p class="" [innerHTML]="matchDetails"></p>
-          </div>
-      </div>
-  </div>
+                    <form [formGroup]="matchDetailsForm" (ngSubmit)="onSubmit()">
+                        <div class="mb-3 has-validation">
+                            <label [for]="controls.matchId" class="form-label"
+                                >Id del partido</label
+                            >
+                            <input
+                                type="text"
+                                placeholder="01G...7KS"
+                                class="form-control {{ getControlValidClass(controls.matchId) }}"
+                                [id]="controls.matchId"
+                                [formControl]="controls.matchId"
+                            />
+                            <div *ngIf="controlHasError(controls.matchId)" class="invalid-feedback">
+                                El id del partido es obligatorio
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Ver detalles</button>
+                    </form>
+                </div>
+
+                <div *ngIf="matchDetails" class="card-body">
+                    <h2 class="text-center">Detalles</h2>
+
+                    <div class="my-3 p-3 bg-body rounded shadow-sm">
+                        <h6 class="border-bottom pb-2 mb-0">Ubicación</h6>
+                        <div class="d-flex text-muted pt-3">
+                            <strong class="d-block text-gray-dark">{{ matchDetails.location }}</strong>
+                        </div>
+                    </div>
+
+                    <div class="my-3 p-3 bg-body rounded shadow-sm">
+                        <h6 class="border-bottom pb-2 mb-0">Hora</h6>
+                        <div class="d-flex text-muted pt-3">
+                            <strong class="d-block text-gray-dark">{{ matchDetails.startingDateTime }}</strong>
+                        </div>
+                    </div>
+
+
+                    <div *ngIf="matchDetails.players.length" class="my-3 p-3 bg-body rounded shadow-sm">
+                        <h6 class="border-bottom pb-2 mb-0">Jugadores</h6>
+                        <div *ngFor="let player of matchDetails.players" class="text-muted pt-3">
+                            <div class="row">
+                                <div *ngIf="player.isRegular; else sustitute" class="col-xl-4">
+                                    <strong class="text-gray-dark">Titular</strong>
+                                </div>
+                                <ng-template #sustitute>
+                                    <div class="col-xl-4">
+                                        <strong class="text-gray-dark">Suplente</strong>
+                                    </div>
+                                </ng-template>
+                                <div class="col-xl-4">
+                                    <strong class="text-gray-dark">Email: </strong> {{player.email}}
+                                </div>
+                                <div class="col-xl-4">
+                                    <strong class="text-gray-dark">Teléfono: </strong> {{player.phoneNumber}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
