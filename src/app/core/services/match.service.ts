@@ -33,7 +33,7 @@ export class MatchService {
     backendPlayer.email = player.email;
 
     return this.http.post<Player>(
-      environment.apiResources.matches.playersByMatch(player.matchId),
+      environment.apiResources.matches.matchPlayers(player.matchId),
       backendPlayer
     );
   }

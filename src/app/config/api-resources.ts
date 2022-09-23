@@ -8,6 +8,6 @@ export const getApiResources = () => ({
   matches: {
     matches: () => apiURL + '/api/matches',
     matchById: (id: string) => apiURL + `/api/matches/${id}`,
-    playersByMatch: (id: string) => apiURL + `/api/matches/${id}/players`
+    matchPlayers: (id: string) => apiURL + `/api/matches/${id}/players`
   }
 });

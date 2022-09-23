@@ -16,7 +16,7 @@ interface NewPlayerForm {
 @Component({
   selector: 'app-new-player-form',
   templateUrl: './new-player-form.component.html',
-  styleUrls: ['./new-player-form.component.css']
+  styleUrls: ['./new-player-form.component.scss']
 })
 export class NewPlayerFormComponent {
   controlHasError = controlHasError;
@@ -25,7 +25,8 @@ export class NewPlayerFormComponent {
 
   constructor(
     private readonly matchService: MatchService,
-    private readonly toastr: ToastrService
+    private readonly toastr: ToastrService,
+    private readonly router: Router
   ) {}
 
   newPlayerLinkForm = new FormGroup<NewPlayerForm>({
@@ -110,5 +111,9 @@ export class NewPlayerFormComponent {
         }
       }
     });
+  }
+
+  goHome(): void {
+    void this.router.navigate(['/']);
   }
 }

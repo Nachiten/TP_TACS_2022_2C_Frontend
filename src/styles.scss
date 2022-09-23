@@ -1,0 +1,33 @@
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+
+$theme-colors: (
+  'primary': $purple-600,
+  'danger': #ff4136,
+  'secondary': $teal-400,
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+  'light': $light,
+  'dark': $dark
+);
+@import 'bootstrap';
+@import 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700&display=swap';
+
+body {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+label {
+  font-weight: 500;
+}
+
+button {
+  font-weight: 600 !important;
+  border-width: 0.2rem !important;
+}
+
+h1 {
+  color: $gray-800;
+}

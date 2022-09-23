@@ -12,6 +12,7 @@ import { Match } from '../../model/Match';
 import { MatchService } from '../../services/match.service';
 import { dateToBackendDateTime } from '../../../utils/service-utils';
 import { ErrorCode } from '../../model/ErrorCode';
+import { Router } from '@angular/router';
 
 type MatchFormType = ɵTypedOrUntyped<MatchForm, ɵFormGroupValue<MatchForm>, any>;
 
@@ -23,7 +24,7 @@ interface MatchForm {
 @Component({
   selector: 'app-new-match-form',
   templateUrl: './new-match-form.component.html',
-  styleUrls: ['./new-match-form.component.css']
+  styleUrls: ['./new-match-form.component.scss']
 })
 export class NewMatchFormComponent {
   controlHasError = controlHasError;
@@ -43,7 +44,8 @@ export class NewMatchFormComponent {
 
   constructor(
     private readonly matchService: MatchService,
-    private readonly toastr: ToastrService
+    private readonly toastr: ToastrService,
+    private readonly router: Router
   ) {}
 
   onSubmit(): void {
@@ -104,5 +106,9 @@ export class NewMatchFormComponent {
     const date = dateToBackendDateTime(new Date());
 
     return date.substring(0, date.length - 7);
+  }
+
+  goHome(): void {
+    void this.router.navigate(['/']);
   }
 }
