@@ -49,7 +49,7 @@ export class NewPlayerFormComponent {
     if (!this.newPlayerLinkForm.valid) {
       console.log('Invalid form. Canceling submit.');
 
-      this.toastr.error('Debe corregir todos los errores antes de avanzar', 'Error!');
+      this.toastr.error('Debe corregir todos los errores antes de continuar', 'Error!');
       this.newPlayerLinkForm.markAllAsTouched();
 
       return;
@@ -64,7 +64,7 @@ export class NewPlayerFormComponent {
     player.phoneNumber = values.phoneNumber as number;
 
     if (!player.matchId) {
-      this.toastr.error(`El id de partido es obligatorio`, 'Error!');
+      this.toastr.error(`El id del partido es obligatorio`, 'Error!');
       return;
     }
 
