@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { controlHasError, getControlValidClass } from 'src/app/utils/form-utils';
 import { MatchService } from '../../services/match.service';
 import { MatchDetails } from '../../model/MatchDetails';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-match-details-form',
@@ -17,7 +18,8 @@ export class MatchDetailsFormComponent implements OnInit {
 
   constructor(
     private readonly toastr: ToastrService,
-    private readonly matchService: MatchService
+    private readonly matchService: MatchService,
+    private readonly router: Router
   ) { }
 
   matchDetailsForm = new FormGroup({
@@ -74,6 +76,10 @@ export class MatchDetailsFormComponent implements OnInit {
 
   parseMatchDate(): string {
     return this.matchDetails ? new Date(this.matchDetails.startingDateTime).toLocaleString() : ''
+  }
+
+  goHome(): void {
+    void this.router.navigate(['/']);
   }
 
 }
