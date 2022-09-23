@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Match } from '../model/Match';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { BackendMatch } from '../model/BackendMatch';
-import { dateToBackendDateTime } from '../../utils/service-utils';
+import { dateToBackendDateTime } from '../../utils/date-utils';
 import { Player } from '../model/Player';
 import { BackendPlayer } from '../model/BackendPlayer';
-import { MatchDetails } from '../model/MatchDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -38,9 +37,21 @@ export class MatchService {
     );
   }
 
-  getMatchById(matchId: string): Observable<MatchDetails> {
-    const url = environment.apiResources.matches.matchById(matchId)
-    return this.http.get<MatchDetails>(url)
-  }
+  getMatchById(matchId: string): Observable<Match> {
+    return this.http.get<BackendMatch>(environment.apiResources.matches.matchById(matchId)).pipe(
+      map((backMatch: BackendMatch) => {
+        const frontMatch = new Match();
 
+        frontMatch.id = backMatch.id as number;
+        frontMatch.location = backMatch.location;
+        frontMatch.players = backMatch.players;
+        frontMatch.dateTime = new Date(backMatch.startingDateTime);
+
+        // Compensation for time zone difference
+        frontMatch.dateTime.setHours(frontMatch.dateTime.getHours() - 3);
+
+        return frontMatch;
+      })
+    );
+  }
 }

@@ -10,7 +10,7 @@ import { controlHasError, getControlValidClass } from '../../../utils/form-utils
 import { ToastrService } from 'ngx-toastr';
 import { Match } from '../../model/Match';
 import { MatchService } from '../../services/match.service';
-import { dateToBackendDateTime } from '../../../utils/service-utils';
+import { dateToBackendDateTime } from '../../../utils/date-utils';
 import { ErrorCode } from '../../model/ErrorCode';
 import { Router } from '@angular/router';
 
