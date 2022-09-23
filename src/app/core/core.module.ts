@@ -10,6 +10,7 @@ import { NewPlayerFormComponent } from './components/new-player-form/new-player-
 import { NewMatchFormComponent } from './components/new-match-form/new-match-form.component';
 import { CardWrapperComponent } from './components/card-wrapper/card-wrapper.component';
 import { FormInputComponent } from './components/form-input/form-input.component';
+import { StatisticsFormComponent } from './components/statistics-form/statistics-form.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormInputComponent } from './components/form-input/form-input.component
     NewPlayerFormComponent,
     NewMatchFormComponent,
     CardWrapperComponent,
-    FormInputComponent
+    FormInputComponent,
+    StatisticsFormComponent
   ],
   imports: [CommonModule, CoreRoutingModule, HttpClientModule, LayoutModule, ReactiveFormsModule]
 })

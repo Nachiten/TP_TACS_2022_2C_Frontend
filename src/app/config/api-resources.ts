@@ -9,5 +9,9 @@ export const getApiResources = () => ({
     matches: () => apiURL + '/api/matches',
     matchById: (id: string) => apiURL + `/api/matches/${id}`,
     matchPlayers: (id: string) => apiURL + `/api/matches/${id}/players`
+  },
+  statistics:{
+    statisticsPlayers: (hours: number) => apiURL + '/api/statistics/players?hours='+hours,
+    statisticsMatches: (hours: number) => apiURL + '/api/statistics/matches?hours='+hours
   }
 });
