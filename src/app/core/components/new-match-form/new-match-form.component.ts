@@ -103,9 +103,7 @@ export class NewMatchFormComponent {
   }
 
   getDateNow(): string {
-    const date = dateToBackendDateTime(new Date());
-
-    return date.substring(0, date.length - 7);
+    return dateToBackendDateTime(new Date());
   }
 
   goHome(): void {
