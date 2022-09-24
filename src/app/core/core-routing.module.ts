@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NewMatchFormComponent } from './components/new-match-form/new-match-form.component';
 import { NewPlayerFormComponent } from './components/new-player-form/new-player-form.component';
 import { MatchDetailsFormComponent } from './components/match-details-form/match-details-form.component';
+import { StatisticsFormComponent } from './components/statistics-form/statistics-form.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'signup-match',
     component: NewPlayerFormComponent
+  },
+  {
+    path: 'statistics',
+    component: StatisticsFormComponent
   },
   {
     path: 'match-details',

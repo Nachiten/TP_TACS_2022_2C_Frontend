@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { CoreRoutingModule } from './core-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,6 +11,7 @@ import { NewMatchFormComponent } from './components/new-match-form/new-match-for
 import { MatchDetailsFormComponent } from './components/match-details-form/match-details-form.component';
 import { CardWrapperComponent } from './components/card-wrapper/card-wrapper.component';
 import { FormInputComponent } from './components/form-input/form-input.component';
+import { StatisticsFormComponent } from './components/statistics-form/statistics-form.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,9 @@ import { FormInputComponent } from './components/form-input/form-input.component
     NewMatchFormComponent,
     CardWrapperComponent,
     FormInputComponent,
-    MatchDetailsFormComponent
+    MatchDetailsFormComponent,
+    StatisticsFormComponent
   ],
-
   imports: [CommonModule, CoreRoutingModule, HttpClientModule, LayoutModule, ReactiveFormsModule]
 })
 export class CoreModule {}

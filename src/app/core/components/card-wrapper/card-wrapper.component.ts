@@ -21,9 +21,5 @@ export class CardWrapperComponent implements OnInit {
 
   ngOnInit(): void {
     this.offset = (12 - this.containerWidth) / 2;
-
-    console.log('Container width: ' + this.containerWidth);
-    console.log('Container size: ' + this.containerSize);
-    console.log('Offset: ' + this.offset);
   }
 }
