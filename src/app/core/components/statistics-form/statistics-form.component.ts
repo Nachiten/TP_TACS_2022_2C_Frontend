@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import {ToastrService} from "ngx-toastr";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { controlHasError, getControlValidClass } from 'src/app/utils/form-utils';
-import {PlayersStatistics} from "../../model/PlayersStatistics";
-import {StatisticsService} from "../../services/statistics.service";
-import {MatchesStatistics} from "../../model/MatchesStatistics";
-
+import { PlayersStatistics } from '../../model/PlayersStatistics';
+import { StatisticsService } from '../../services/statistics.service';
+import { MatchesStatistics } from '../../model/MatchesStatistics';
+import { combineLatest } from 'rxjs';
 
 interface statisticsForm {
   hours: FormControl<number | null>;
@@ -20,12 +20,12 @@ interface statisticsForm {
 export class StatisticsFormComponent implements OnInit {
   controlHasError = controlHasError;
   getControlValidClass = getControlValidClass;
-  resultMessage :string = '';
+  resultMessage: string = '';
 
   statisticsForm = new FormGroup<statisticsForm>({
     hours: new FormControl(null, {
       validators: [Validators.required, Validators.min(1), Validators.max(999999999999)]
-    }),
+    })
   });
 
   controls = this.statisticsForm.controls;
@@ -33,11 +33,10 @@ export class StatisticsFormComponent implements OnInit {
   constructor(
     private readonly statisticsService: StatisticsService,
     private readonly router: Router,
-    private readonly toastr: ToastrService,
+    private readonly toastr: ToastrService
   ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void {
     if (!this.statisticsForm.valid) {
@@ -48,50 +47,22 @@ export class StatisticsFormComponent implements OnInit {
       this.statisticsForm.markAllAsTouched();
       return;
     }
-      const values = this.statisticsForm.value;
-      const playersStatistics = new PlayersStatistics();
-      const matchesStatistics = new MatchesStatistics();
-      playersStatistics.hours = values.hours as number;
-      matchesStatistics.hours = values.hours as number;
-      const msj : string = playersStatistics.hours > 1 ? ' en las últimas '+playersStatistics.hours +' horas.' : ' en la última hora.';
+    const hours: number = this.statisticsForm.value.hours as number;
 
+    const msj: string = hours > 1 ? ` en las últimas ${hours} horas.` : ' en la última hora.';
 
+    const playerStatistics$ = this.statisticsService.getPlayerStatistics(hours);
+    const matchStatistics$ = this.statisticsService.getMatchStatistics(hours);
 
-    this.statisticsService.getStatisticsPlayers(playersStatistics.hours).subscribe({
-        next: (statistics: PlayersStatistics) => {
-          playersStatistics.playersEnrolled=statistics.playersEnrolled
-          this.resultMessage = `Reporte de estadísticas:
-        <ul>
-        <li><b>Cantidad de jugadores anotados: ${playersStatistics.playersEnrolled}</b>${msj}</li>
-        </ul>`
-        },
-        error: (error: any) => {
-          console.log('Error: ', error);
-          if (!error.error || !error.error.errorCode) {
-            this.toastr.error(`Ocurrió un error interno al procesar la solicitud`, 'Error!');
-            return;
-          }
-
-        }
-      });
-
-    this.statisticsService.getStatisticsMatches(matchesStatistics.hours).subscribe({
-      next: (statistics: MatchesStatistics) => {
-        matchesStatistics.matchesCreated=statistics.matchesCreated
-        this.resultMessage += `
-        <ul>
-        <li><b>Cantidad de partidos creados: ${matchesStatistics.matchesCreated}</b>${msj}</li>
-        </ul>`;
-      },
-      error: (error: any) => {
-        console.log('Error: ', error);
-        if (!error.error || !error.error.errorCode) {
-          this.toastr.error(`Ocurrió un error interno al procesar la solicitud`, 'Error!');
-          return;
-        }
-
+    combineLatest([playerStatistics$, matchStatistics$]).subscribe(
+      ([playerStatistics, matchStatistics]) => {
+        this.resultMessage += `Reporte de estadísticas:
+            <ul>
+            <li><b>Cantidad de jugadores anotados: ${playerStatistics.playersEnrolled}</b>${msj}</li>
+            <li><b>Cantidad de partidos creados: ${matchStatistics.matchesCreated}</b>${msj}</li>
+            </ul>`;
       }
-    });
+    );
   }
 
   goHome(): void {

@@ -1,9 +1,7 @@
 export class MatchesStatistics {
-  matchesCreated : number;
-  hours: number;
+  matchesCreated: number;
 
   constructor() {
-    this.matchesCreated=0;
-    this.hours=0;
+    this.matchesCreated = 0;
   }
 }

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { NewMatchFormComponent } from './components/new-match-form/new-match-form.component';
 import { NewPlayerFormComponent } from './components/new-player-form/new-player-form.component';
-import {StatisticsFormComponent} from "./components/statistics-form/statistics-form.component";
+import { StatisticsFormComponent } from './components/statistics-form/statistics-form.component';
 
 const routes: Routes = [
   {
