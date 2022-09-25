@@ -56,7 +56,7 @@ export class StatisticsFormComponent implements OnInit {
 
     combineLatest([playerStatistics$, matchStatistics$]).subscribe(
       ([playerStatistics, matchStatistics]) => {
-        this.resultMessage += `Reporte de estadísticas:
+        this.resultMessage = `Reporte de estadísticas:
             <ul>
             <li><b>Cantidad de jugadores anotados: ${playerStatistics.playersEnrolled}</b>${msj}</li>
             <li><b>Cantidad de partidos creados: ${matchStatistics.matchesCreated}</b>${msj}</li>

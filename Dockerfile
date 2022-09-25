@@ -17,5 +17,8 @@ FROM nginx:alpine
 COPY --from=app-build /app/dist/tp-tacs-2022-2c-grupo-2-frontend /usr/share/nginx/html
 COPY --from=app-build /app/nginx/default.conf /etc/nginx/conf.d/default.conf
 
+RUN apk add --update --no-cache tzdata
+ENV TZ=America/Buenos_Aires
+
 # Default nginx port
 EXPOSE 80
