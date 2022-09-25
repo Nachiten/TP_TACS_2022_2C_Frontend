@@ -40,7 +40,7 @@ export class MatchDetailsFormComponent implements OnInit {
     if (!this.matchDetailsForm.valid) {
       console.log('Invalid form. Canceling submit.');
 
-      this.toastr.error(`El id de partido es obligatorio`, 'Error!');
+      this.toastr.error(`El id del partido es obligatorio`, 'Error!');
       this.matchDetailsForm.markAllAsTouched();
 
       return;

@@ -42,8 +42,6 @@
     </form>
 
     <div class="alert alert-success mt-4" *ngIf="resultMessage">
-        <p class="text-center">
-            {{ resultMessage }}
-        </p>
+        <p class="text-center" [innerHTML]="resultMessage"></p>
     </div>
 </card-wrapper>

@@ -46,21 +46,23 @@
         <div class="my-3 p-3 bg-body rounded shadow-sm">
             <h6 class="border-bottom pb-2 mb-0">Jugadores</h6>
             <p *ngIf="!matchDetails.players.length" class="pt-3">No hay jugadores</p>
-            <div *ngFor="let player of matchDetails.players" class="pt-3">
-                <div class="row">
-                    <div class="col-xl-4">
-                        <strong class="text-gray-dark">{{
-                            player.isRegular ? 'Titular' : 'Suplente'
-                        }}</strong>
-                    </div>
-                    <div class="col-xl-4">
-                        <strong class="text-gray-dark">Email: </strong> {{ player.email }}
-                    </div>
-                    <div class="col-xl-4">
-                        <strong class="text-gray-dark">Teléfono: </strong> {{ player.phoneNumber }}
-                    </div>
-                </div>
-            </div>
+
+            <table *ngIf="matchDetails.players.length" class="table mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">Tipo de jugador</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Teléfono</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let player of matchDetails.players">
+                        <td>{{ player.isRegular ? 'Titular' : 'Suplente' }}</td>
+                        <td>{{ player.email }}</td>
+                        <td>{{ player.phoneNumber }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </card-wrapper>

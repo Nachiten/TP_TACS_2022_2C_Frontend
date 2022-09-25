@@ -8,7 +8,7 @@ export const dateToBackendDateTime = (date: Date): string => {
 };
 
 export const dateToStringDateTime = (date: Date): string => {
-  return `${date.getDate()} del ${date.getMonth()} de ${date.getFullYear()}, ${date
-    .toISOString()
-    .slice(11, -8)}`;
+  return `${date.getDate()} del ${date.getMonth()} de ${date.getFullYear()} a las ${date
+    .toTimeString()
+    .slice(0, 8)}`;
 };

@@ -73,7 +73,7 @@ export class NewMatchFormComponent {
       next: (match: Match) => {
         console.log('Match created: ', match);
 
-        this.resultMessage = `El partido fue creado correctamente con id: ${match.id}`;
+        this.resultMessage = `El partido fue creado correctamente con el ID: <strong>${match.id}</strong>`;
       },
       error: (error: any) => {
         console.log('Error: ', error);
