@@ -1,5 +1,5 @@
-const apiURL = 'http://192.168.92.2:3000';
-// const apiURL = 'http://localhost:3000';
+//const apiURL = 'http://192.168.92.2:3000';
+const apiURL = 'http://localhost:3000';
 
 export const getApiResources = () => ({
   test: {

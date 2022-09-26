@@ -3,9 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { controlHasError, getControlValidClass } from 'src/app/utils/form-utils';
-import { PlayersStatistics } from '../../model/PlayersStatistics';
-import { StatisticsService } from '../../services/statistics.service';
-import { MatchesStatistics } from '../../model/MatchesStatistics';
+import { PlayersStatistics } from '../../../model/PlayersStatistics';
+import { StatisticsService } from '../../../services/statistics.service';
+import { MatchesStatistics } from '../../../model/MatchesStatistics';
 import { combineLatest } from 'rxjs';
 
 interface statisticsForm {

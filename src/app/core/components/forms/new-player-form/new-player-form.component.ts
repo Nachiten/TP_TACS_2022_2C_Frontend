@@ -1,11 +1,11 @@
-import { ErrorCode } from './../../model/ErrorCode';
-import { Player } from './../../model/Player';
+import { ErrorCode } from '../../../model/ErrorCode';
+import { Player } from '../../../model/Player';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { controlHasError, getControlValidClass } from 'src/app/utils/form-utils';
-import { MatchService } from '../../services/match.service';
+import { MatchService } from '../../../services/match.service';
 
 interface NewPlayerForm {
   matchId: FormControl<string>;

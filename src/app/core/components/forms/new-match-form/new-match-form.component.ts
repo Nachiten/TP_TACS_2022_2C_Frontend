@@ -6,12 +6,12 @@ import {
   ɵFormGroupValue,
   ɵTypedOrUntyped
 } from '@angular/forms';
-import { controlHasError, getControlValidClass } from '../../../utils/form-utils';
+import { controlHasError, getControlValidClass } from '../../../../utils/form-utils';
 import { ToastrService } from 'ngx-toastr';
-import { Match } from '../../model/Match';
-import { MatchService } from '../../services/match.service';
-import { dateToBackendDateTime } from '../../../utils/date-utils';
-import { ErrorCode } from '../../model/ErrorCode';
+import { Match } from '../../../model/Match';
+import { MatchService } from '../../../services/match.service';
+import { dateToBackendDateTime } from '../../../../utils/date-utils';
+import { ErrorCode } from '../../../model/ErrorCode';
 import { Router } from '@angular/router';
 
 type MatchFormType = ɵTypedOrUntyped<MatchForm, ɵFormGroupValue<MatchForm>, any>;

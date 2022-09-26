@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { controlHasError, getControlValidClass } from 'src/app/utils/form-utils';
-import { MatchService } from '../../services/match.service';
+import { MatchService } from '../../../services/match.service';
 import { Router } from '@angular/router';
-import { ErrorCode } from '../../model/ErrorCode';
-import { Match } from '../../model/Match';
-import { dateToStringDateTime } from '../../../utils/date-utils';
+import { ErrorCode } from '../../../model/ErrorCode';
+import { Match } from '../../../model/Match';
+import { dateToStringDateTime } from '../../../../utils/date-utils';
 
 @Component({
   selector: 'app-match-details-form',
