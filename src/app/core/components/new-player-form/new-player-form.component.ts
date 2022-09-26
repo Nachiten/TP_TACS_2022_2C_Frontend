@@ -76,10 +76,10 @@ export class NewPlayerFormComponent {
 
         this.resultMessage = `El jugador fue anotado correctamente con los siguientes datos:
         <ul>
-        <li>Id de partido: ${player.matchId}</li>
-        <li>Numero de telefono: ${player.phoneNumber}</li>
-        <li>Email: ${player.email}</li>
-        <li>Tipo de jugador: ${regularStatusText}</li>
+        <li><strong>Id del partido:</strong> ${player.matchId}</li>
+        <li><strong>Numero de telefono:</strong> ${player.phoneNumber}</li>
+        <li><strong>Email:</strong> ${player.email}</li>
+        <li><strong>Tipo de jugador:</strong> ${regularStatusText}</li>
         </ul>`;
       },
       error: (error: any) => {

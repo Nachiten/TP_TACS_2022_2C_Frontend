@@ -3,10 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { controlHasError, getControlValidClass } from 'src/app/utils/form-utils';
-import { PlayersStatistics } from '../../model/PlayersStatistics';
+import { PlayerStatistics } from '../../model/PlayerStatistics';
 import { StatisticsService } from '../../services/statistics.service';
-import { MatchesStatistics } from '../../model/MatchesStatistics';
+import { MatchStatistics } from '../../model/MatchStatistics';
 import { combineLatest } from 'rxjs';
+import { dateToStringDateTime } from '../../../utils/date-utils';
 
 interface statisticsForm {
   hours: FormControl<number | null>;
@@ -56,11 +57,22 @@ export class StatisticsFormComponent implements OnInit {
 
     combineLatest([playerStatistics$, matchStatistics$]).subscribe(
       ([playerStatistics, matchStatistics]) => {
+        const hourTo: Date = matchStatistics.now;
+
+        const hourFrom: Date = new Date(hourTo);
+        hourFrom.setHours(hourFrom.getHours() - hours);
+
         this.resultMessage = `Reporte de estadísticas:
             <ul>
-            <li><b>Cantidad de jugadores anotados: ${playerStatistics.playersEnrolled}</b>${msj}</li>
+            <li><b>Cantidad de jugadores anotados: ${
+              playerStatistics.playersEnrolled
+            }</b>${msj}</li>
             <li><b>Cantidad de partidos creados: ${matchStatistics.matchesCreated}</b>${msj}</li>
-            </ul>`;
+        </ul>
+        <p>Este resultado fue procesado desde el <strong>${dateToStringDateTime(
+          hourFrom
+        )}</strong> hasta el <strong>${dateToStringDateTime(hourTo)}</strong></p>
+          `;
       }
     );
   }
