@@ -1,2 +1,21 @@
-<h1>Home component (/) [MOCK]</h1>
-<a routerLink="/form">Crear un nuevo partido</a>
+<card-wrapper>
+    <h1 class="text-center">Sistema de gestión de partidos</h1>
+    <div class="row">
+        <div class="col-4 offset-4">
+            <div class="d-flex flex-column">
+                <button class="btn btn-primary mt-4" routerLink="/new-match">
+                    Crear un nuevo partido
+                </button>
+                <button class="btn btn-primary mt-4" routerLink="/signup-match">
+                    Anotarse a un partido
+                </button>
+                <button class="btn btn-primary mt-4" routerLink="/match-details">
+                    Ver datos de un partido
+                </button>
+                <button class="btn btn-primary mt-4" routerLink="/statistics">
+                    Consultar estadísticas
+                </button>
+            </div>
+        </div>
+    </div>
+</card-wrapper>

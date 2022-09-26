@@ -1,11 +1,14 @@
-const apiURL = 'http://192.168.92.2:3000';
-
 export const getApiResources = () => ({
   test: {
-    getHealth: () => apiURL + '/api/health'
+    getHealth: () => '/health'
   },
   matches: {
-    matches: () => apiURL + '/api/matches',
-    matchById: (id: string) => apiURL + `/api/matches/${id}`
+    matches: () => '/matches',
+    matchById: (id: string) => `/matches/${id}`,
+    matchPlayers: (id: string) => `/matches/${id}/players`
+  },
+  statistics: {
+    statisticsPlayers: () => '/statistics/players',
+    statisticsMatches: () => '/statistics/matches'
   }
 });

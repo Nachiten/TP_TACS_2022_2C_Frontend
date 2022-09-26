@@ -1,0 +1,46 @@
+<card-wrapper>
+    <h1 class="text-center">Consulta de Estadísticas</h1>
+
+    <form [formGroup]="statisticsForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label [for]="controls.hours" class="form-label">Cantidad de horas</label>
+            <input
+                type="number"
+                placeholder="2"
+                min="1"
+                max="10000"
+                step="1"
+                class="form-control {{ getControlValidClass(controls.hours) }}"
+                [id]="controls.hours"
+                [formControl]="controls.hours"
+            />
+            <div *ngIf="controlHasError(controls.hours)" class="invalid-feedback">
+                La cantidad de horas es obligatoria.
+            </div>
+            <div *ngIf="controlHasError(controls.hours, 'min')" class="invalid-feedback">
+                La cantidad de horas no puede ser menor a 1.
+            </div>
+            <div *ngIf="controlHasError(controls.hours, 'max')" class="invalid-feedback">
+                La cantidad de horas no puede ser mayor a 1000000.
+            </div>
+            <small class="form-text text-muted">
+                <em>
+                    El reporte de estadísticas contempla los datos existentes de las últimas n horas
+                    al momento de realizar la consulta.
+                </em>
+            </small>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <button type="button" class="btn btn-outline-secondary" (click)="goHome()">
+                Volver a inicio
+            </button>
+            <button type="submit" class="btn btn-outline-primary" [disabled]="loading">
+                Consultar
+            </button>
+        </div>
+        <div class="alert alert-success mt-4" *ngIf="resultMessage">
+            <p [innerHTML]="resultMessage"></p>
+        </div>
+    </form>
+</card-wrapper>

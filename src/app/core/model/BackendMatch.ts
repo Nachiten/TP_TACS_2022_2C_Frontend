@@ -1,13 +1,15 @@
+import { Player } from './Player';
+
 export class BackendMatch {
   id?: number;
-  startingDate: string;
-  startingTime: string;
+  startingDateTime: string;
   location: string;
+  players: Player[];
 
   constructor() {
     this.id = 0;
-    this.startingDate = '';
-    this.startingTime = '';
+    this.startingDateTime = '';
     this.location = '';
+    this.players = [];
   }
 }
