@@ -1,14 +1,16 @@
+const apiURL = 'http://localhost:3000';
+
 export const getApiResources = () => ({
   test: {
-    getHealth: () => +'/api/health'
+    getHealth: () => apiURL + '/api/health'
   },
   matches: {
-    matches: () => +'/api/matches',
-    matchById: (id: string) => +`/api/matches/${id}`,
-    matchPlayers: (id: string) => +`/api/matches/${id}/players`
+    matches: () => apiURL + '/api/matches',
+    matchById: (id: string) => apiURL + `/api/matches/${id}`,
+    matchPlayers: (id: string) => apiURL + `/api/matches/${id}/players`
   },
   statistics: {
-    statisticsPlayers: () => +'/api/statistics/players',
-    statisticsMatches: () => +'/api/statistics/matches'
+    statisticsPlayers: () => apiURL + '/api/statistics/players',
+    statisticsMatches: () => apiURL + '/api/statistics/matches'
   }
 });
