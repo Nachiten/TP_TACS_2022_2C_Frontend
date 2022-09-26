@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { controlHasError, getControlValidClass } from 'src/app/utils/form-utils';
@@ -13,7 +13,7 @@ import { dateToStringDateTime } from '../../../../utils/date-utils';
   templateUrl: './match-details-form.component.html',
   styleUrls: ['./match-details-form.component.css']
 })
-export class MatchDetailsFormComponent implements OnInit {
+export class MatchDetailsFormComponent {
   dateToStringDaTeTime = dateToStringDateTime;
   controlHasError = controlHasError;
   getControlValidClass = getControlValidClass;
@@ -35,8 +35,6 @@ export class MatchDetailsFormComponent implements OnInit {
   });
 
   controls = this.matchDetailsForm.controls;
-
-  ngOnInit(): void {}
 
   onSubmit(): void {
     if (!this.matchDetailsForm.valid) {
@@ -76,6 +74,9 @@ export class MatchDetailsFormComponent implements OnInit {
         switch (error.error.errorCode) {
           case ErrorCode.MATCH_NOT_FOUND:
             this.toastr.error('El partido indicado no existe', 'Error!');
+            break;
+          case ErrorCode.INVALID_BODY:
+            this.toastr.error('El id de partido no tiene el formato correcto', 'Error!');
             break;
           default:
             this.toastr.error('Ocurrió un error al obtener el detalle', 'Error!');

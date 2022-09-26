@@ -44,9 +44,13 @@
         </div>
 
         <div class="my-3 p-3 bg-body rounded shadow-sm">
-            <h6 class="border-bottom pb-2 mb-0">Jugadores</h6>
+            <h6 id="table-description" class="border-bottom pb-2 mb-0">Jugadores</h6>
             <p *ngIf="!matchDetails.players.length" class="pt-3">No hay jugadores</p>
-            <table *ngIf="matchDetails.players.length" class="table mt-3">
+            <table
+                aria-describedby="table-description"
+                *ngIf="matchDetails.players.length"
+                class="table mt-3"
+            >
                 <thead>
                     <tr>
                         <th scope="col">Tipo de jugador</th>

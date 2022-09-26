@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -7,7 +7,7 @@ import { StatisticsService } from '../../../services/statistics.service';
 import { combineLatest } from 'rxjs';
 import { dateToStringDateTime } from '../../../../utils/date-utils';
 
-interface statisticsForm {
+interface StatisticsForm {
   hours: FormControl<number | null>;
 }
 
@@ -16,7 +16,7 @@ interface statisticsForm {
   templateUrl: './statistics-form.component.html',
   styleUrls: ['./statistics-form.component.css']
 })
-export class StatisticsFormComponent implements OnInit {
+export class StatisticsFormComponent {
   controlHasError = controlHasError;
   getControlValidClass = getControlValidClass;
 
@@ -24,7 +24,7 @@ export class StatisticsFormComponent implements OnInit {
 
   loading: boolean = false;
 
-  statisticsForm = new FormGroup<statisticsForm>({
+  statisticsForm = new FormGroup<StatisticsForm>({
     hours: new FormControl(null, {
       validators: [Validators.required, Validators.min(1), Validators.max(1000000)]
     })
@@ -37,8 +37,6 @@ export class StatisticsFormComponent implements OnInit {
     private readonly router: Router,
     private readonly toastr: ToastrService
   ) {}
-
-  ngOnInit(): void {}
 
   onSubmit(): void {
     if (!this.statisticsForm.valid) {
