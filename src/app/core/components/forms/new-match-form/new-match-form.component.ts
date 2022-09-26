@@ -32,6 +32,8 @@ export class NewMatchFormComponent {
 
   resultMessage: string = '';
 
+  loading = false;
+
   newMatchForm = new FormGroup<MatchForm>({
     dateTime: new FormControl('', { validators: [Validators.required], nonNullable: true }),
     location: new FormControl('', {
@@ -50,37 +52,30 @@ export class NewMatchFormComponent {
 
   onSubmit(): void {
     if (!this.newMatchForm.valid) {
-      console.log('Invalid form. Canceling submit.');
-
       this.toastr.error('Debe corregir todos los errores antes de continuar', 'Error!');
       this.newMatchForm.markAllAsTouched();
 
       return;
     }
 
-    console.log('Form valid. Submitting...');
+    this.loading = true;
 
     const value: MatchFormType = this.newMatchForm.value;
-
     const match = new Match();
-
-    console.log('Date time: ', value.dateTime);
 
     match.dateTime = new Date(value.dateTime as string);
     match.location = value.location as string;
 
     this.matchService.createMatch(match).subscribe({
       next: (match: Match) => {
-        console.log('Match created: ', match);
-
-        this.resultMessage = `El partido fue creado correctamente con id: ${match.id}`;
+        this.resultMessage = `El partido fue creado correctamente con el id: <strong>${match.id}</strong>`;
+        this.loading = false;
       },
       error: (error: any) => {
-        console.log('Error: ', error);
-
         // Error must have errorCode
         if (!error.error || !error.error.errorCode) {
           this.toastr.error(`Ocurrió un error interno al procesar la solicitud`, 'Error!');
+          this.loading = false;
           return;
         }
 
@@ -98,6 +93,8 @@ export class NewMatchFormComponent {
           default:
             this.toastr.error('Ocurrió un error al crear el partido', 'Error!');
         }
+
+        this.loading = false;
       }
     });
   }

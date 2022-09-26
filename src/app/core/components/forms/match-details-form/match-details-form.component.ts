@@ -19,6 +19,8 @@ export class MatchDetailsFormComponent implements OnInit {
   getControlValidClass = getControlValidClass;
   matchDetails?: Match;
 
+  loading = false;
+
   constructor(
     private readonly toastr: ToastrService,
     private readonly matchService: MatchService,
@@ -40,11 +42,13 @@ export class MatchDetailsFormComponent implements OnInit {
     if (!this.matchDetailsForm.valid) {
       console.log('Invalid form. Canceling submit.');
 
-      this.toastr.error(`El id de partido es obligatorio`, 'Error!');
+      this.toastr.error(`El id del partido es obligatorio`, 'Error!');
       this.matchDetailsForm.markAllAsTouched();
 
       return;
     }
+
+    this.loading = true;
 
     const matchID = this.matchDetailsForm.value.matchId as string;
 
@@ -55,15 +59,16 @@ export class MatchDetailsFormComponent implements OnInit {
         this.matchDetails = match;
         console.log(this.matchDetails);
         console.log(`found match ${matchID}`);
+
+        this.loading = false;
       },
       error: (error: any) => {
         console.log('Error: ', error);
 
-        this.matchDetailsForm.controls['matchId'].setErrors({ incorrect: true });
-
         // Error must have errorCode
         if (!error.error || !error.error.errorCode) {
           this.toastr.error(`Ocurrió un error interno al procesar la solicitud`, 'Error!');
+          this.loading = false;
           return;
         }
 
@@ -75,13 +80,11 @@ export class MatchDetailsFormComponent implements OnInit {
           default:
             this.toastr.error('Ocurrió un error al obtener el detalle', 'Error!');
         }
+
+        this.loading = false;
       }
     });
   }
-
-  // parseMatchDate(): string {
-  //   return this.matchDetails ? new Date(this.matchDetails.startingDateTime).toLocaleString() : '';
-  // }
 
   goHome(): void {
     void this.router.navigate(['/']);

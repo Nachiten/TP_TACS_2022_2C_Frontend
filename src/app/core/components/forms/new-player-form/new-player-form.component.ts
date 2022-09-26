@@ -21,7 +21,10 @@ interface NewPlayerForm {
 export class NewPlayerFormComponent {
   controlHasError = controlHasError;
   getControlValidClass = getControlValidClass;
+
   resultMessage: string = '';
+
+  loading: boolean = false;
 
   constructor(
     private readonly matchService: MatchService,
@@ -47,21 +50,20 @@ export class NewPlayerFormComponent {
 
   onSubmit(): void {
     if (!this.newPlayerLinkForm.valid) {
-      console.log('Invalid form. Canceling submit.');
-
       this.toastr.error('Debe corregir todos los errores antes de continuar', 'Error!');
       this.newPlayerLinkForm.markAllAsTouched();
 
       return;
     }
 
-    console.log('Form valid. ');
+    this.loading = true;
 
-    const values = this.newPlayerLinkForm.value;
+    const value = this.newPlayerLinkForm.value;
+
     const player = new Player();
-    player.email = values.email as string;
-    player.matchId = values.matchId as string;
-    player.phoneNumber = values.phoneNumber as number;
+    player.email = value.email as string;
+    player.matchId = value.matchId as string;
+    player.phoneNumber = value.phoneNumber as number;
 
     if (!player.matchId) {
       this.toastr.error(`El id del partido es obligatorio`, 'Error!');
@@ -70,23 +72,22 @@ export class NewPlayerFormComponent {
 
     this.matchService.createPlayer(player).subscribe({
       next: (player: Player) => {
-        console.log('Player created: ', player);
-
         const regularStatusText: string = player.isRegular ? 'Titular' : 'Suplente';
 
         this.resultMessage = `El jugador fue anotado correctamente con los siguientes datos:
         <ul>
-        <li>Id de partido: ${player.matchId}</li>
-        <li>Numero de telefono: ${player.phoneNumber}</li>
-        <li>Email: ${player.email}</li>
-        <li>Tipo de jugador: ${regularStatusText}</li>
+        <li><strong>Id del partido:</strong> ${player.matchId}</li>
+        <li><strong>Numero de telefono:</strong> ${player.phoneNumber}</li>
+        <li><strong>Email:</strong> ${player.email}</li>
+        <li><strong>Tipo de jugador:</strong> ${regularStatusText}</li>
         </ul>`;
+
+        this.loading = false;
       },
       error: (error: any) => {
-        console.log('Error: ', error);
-
         if (!error.error || !error.error.errorCode) {
           this.toastr.error(`Ocurrió un error interno al procesar la solicitud`, 'Error!');
+          this.loading = false;
           return;
         }
 
@@ -109,6 +110,8 @@ export class NewPlayerFormComponent {
           default:
             this.toastr.error('Ocurrió un error al crear el jugador', 'Error!');
         }
+
+        this.loading = false;
       }
     });
   }

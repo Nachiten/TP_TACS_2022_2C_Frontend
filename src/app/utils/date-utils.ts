@@ -8,17 +8,8 @@ export const dateToBackendDateTime = (date: Date): string => {
 };
 
 export const dateToStringDateTime = (date: Date): string => {
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric'
-  };
-
-  return date.toLocaleString('sp-AR', options);
-  //`${date.getDate()} del ${date.getMonth()} de ${date.getFullYear()}, ${date
-  // .toISOString()
-  //.slice(11, -8)}`;
+  // Month is an index from 0 to 11, that's why the + 1
+  return `${date.getDate()} del ${date.getMonth() + 1} de ${date.getFullYear()} a las ${date
+    .toTimeString()
+    .slice(0, 8)}`;
 };

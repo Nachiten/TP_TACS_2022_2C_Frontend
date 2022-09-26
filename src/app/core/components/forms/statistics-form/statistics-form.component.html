@@ -21,7 +21,7 @@
                 La cantidad de horas no puede ser menor a 1.
             </div>
             <div *ngIf="controlHasError(controls.hours, 'max')" class="invalid-feedback">
-                La cantidad de horas no puede ser mayor a 10000.
+                La cantidad de horas no puede ser mayor a 1000000.
             </div>
             <small class="form-text text-muted">
                 <em>
@@ -35,7 +35,9 @@
             <button type="button" class="btn btn-outline-secondary" (click)="goHome()">
                 Volver a inicio
             </button>
-            <button type="submit" class="btn btn-outline-primary">Consultar</button>
+            <button type="submit" class="btn btn-outline-primary" [disabled]="loading">
+                Consultar
+            </button>
         </div>
         <div class="alert alert-success mt-4" *ngIf="resultMessage">
             <p [innerHTML]="resultMessage"></p>

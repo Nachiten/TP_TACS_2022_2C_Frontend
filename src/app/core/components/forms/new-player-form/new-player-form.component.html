@@ -59,7 +59,9 @@
             <button type="button" class="btn btn-outline-secondary" (click)="goHome()">
                 Volver a inicio
             </button>
-            <button type="submit" class="btn btn-outline-primary">Anotarse al partido</button>
+            <button type="submit" class="btn btn-outline-primary" [disabled]="loading">
+                Anotarse al partido
+            </button>
         </div>
     </form>
 
