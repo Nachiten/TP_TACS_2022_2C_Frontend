@@ -42,7 +42,7 @@ export class MatchService {
       map((backMatch: BackendMatch) => {
         const frontMatch = new Match();
 
-        frontMatch.id = backMatch.id as number;
+        frontMatch.id = backMatch.id as string;
         frontMatch.location = backMatch.location;
         frontMatch.players = backMatch.players;
         frontMatch.dateTime = new Date(backMatch.startingDateTime);

@@ -13,6 +13,7 @@ import { CardWrapperComponent } from './components/card-wrapper/card-wrapper.com
 import { FormInputComponent } from './components/form-input/form-input.component';
 import { StatisticsFormComponent } from './components/forms/statistics-form/statistics-form.component';
 import { RequestInterceptorService } from './services/request-interceptor.service';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,14 @@ import { RequestInterceptorService } from './services/request-interceptor.servic
     MatchDetailsFormComponent,
     StatisticsFormComponent
   ],
-  imports: [CommonModule, CoreRoutingModule, HttpClientModule, LayoutModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    CoreRoutingModule,
+    HttpClientModule,
+    LayoutModule,
+    ReactiveFormsModule,
+    ClipboardModule
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
