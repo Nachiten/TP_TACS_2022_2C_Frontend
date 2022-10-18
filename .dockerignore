@@ -1,7 +1,0 @@
-.angular/
-.vscode/
-.idea/
-node_modules/
-.git/
-sonar.sh
-pre-commit.pyz

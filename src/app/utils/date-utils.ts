@@ -11,5 +11,5 @@ export const dateToStringDateTime = (date: Date): string => {
   // Month is an index from 0 to 11, that's why the + 1
   return `${date.getDate()} del ${date.getMonth() + 1} de ${date.getFullYear()} a las ${date
     .toTimeString()
-    .slice(0, 8)}`;
+    .slice(0, 5)}`;
 };
