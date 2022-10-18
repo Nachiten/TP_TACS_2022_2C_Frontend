@@ -28,7 +28,13 @@
             <div *ngIf="controlHasError(controls.email, 'required')" class="invalid-feedback">
                 El email es obligatorio
             </div>
-            <div *ngIf="controlHasError(controls.email, 'email')" class="invalid-feedback">
+            <div
+                *ngIf="
+                    controlHasError(controls.email, 'email') ||
+                    controlHasError(controls.email, 'pattern')
+                "
+                class="invalid-feedback"
+            >
                 El email debe ser valido
             </div>
         </div>
