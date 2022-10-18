@@ -1,6 +1,5 @@
 <card-wrapper>
     <h1 class="text-center">Nuevo partido</h1>
-
     <form [formGroup]="newMatchForm" (ngSubmit)="onSubmit()">
         <div class="mb-3">
             <label [for]="controls.dateTime" class="form-label">Fecha y Hora</label>
@@ -41,7 +40,25 @@
         </div>
     </form>
 
-    <div class="alert alert-success mt-4" *ngIf="resultMessage">
-        <p class="text-center" [innerHTML]="resultMessage"></p>
+    <div class="alert alert-success mt-4" *ngIf="idCreated != ''">
+        <p class="text-center">
+            El partido fue creado correctamente con el id:
+            <strong class="id-primary">
+                {{ idCreated }}
+            </strong>
+            <button
+                *ngIf="!copied"
+                class="btn btn-outline-primary"
+                title="Copy"
+                [cdkCopyToClipboard]="idCreated"
+                [cdkCopyToClipboardAttempts]="5"
+                (cdkCopyToClipboardCopied)="onClipboardCopy($event)"
+            >
+                <i class="bi bi-clipboard"></i>
+            </button>
+            <button *ngIf="copied" title="Copied" class="btn btn-outline-secondary">
+                <i class="bi bi-clipboard-check-fill"></i>
+            </button>
+        </p>
     </div>
 </card-wrapper>

@@ -1,6 +1,6 @@
 {
   "name": "tp-tacs-2022-2c-grupo-2-frontend",
-  "version": "0.0.0",
+  "version": "3.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "bootstrap": "^5.2.0",
+    "bootstrap-icons": "^1.9.1",
     "codelyzer": "^6.0.2",
     "ngx-bootstrap": "^9.0.0",
     "ngx-toastr": "^15.0.0",

@@ -41,7 +41,7 @@ export class NewPlayerFormComponent {
       validators: [Validators.required, Validators.min(1000), Validators.max(999999999999)]
     }),
     email: new FormControl('', {
-      validators: [Validators.required, Validators.email],
+      validators: [Validators.required, Validators.email, Validators.pattern('.+@.+[\\.].+')],
       nonNullable: true
     })
   });

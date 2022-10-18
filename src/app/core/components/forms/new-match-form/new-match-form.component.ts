@@ -30,9 +30,10 @@ export class NewMatchFormComponent {
   controlHasError = controlHasError;
   getControlValidClass = getControlValidClass;
 
-  resultMessage: string = '';
+  idCreated: string = '';
 
   loading = false;
+  copied = false;
 
   newMatchForm = new FormGroup<MatchForm>({
     dateTime: new FormControl('', { validators: [Validators.required], nonNullable: true }),
@@ -68,7 +69,7 @@ export class NewMatchFormComponent {
 
     this.matchService.createMatch(match).subscribe({
       next: (match: Match) => {
-        this.resultMessage = `El partido fue creado correctamente con el id: <strong>${match.id}</strong>`;
+        this.idCreated = match.id;
         this.loading = false;
       },
       error: (error: any) => {
@@ -105,5 +106,15 @@ export class NewMatchFormComponent {
 
   goHome(): void {
     void this.router.navigate(['/']);
+  }
+
+  public async onClipboardCopy(successful: boolean): Promise<void> {
+    this.copied = successful;
+    await this.delay(2000);
+    this.copied = !successful;
+  }
+
+  delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
