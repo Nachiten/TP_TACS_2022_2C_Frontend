@@ -13,7 +13,6 @@ import { MatchService } from '../../../services/match.service';
 import { dateToBackendDateTime } from '../../../../utils/date-utils';
 import { ErrorCode } from '../../../model/ErrorCode';
 import { Router } from '@angular/router';
-import { Clipboard } from '@angular/cdk/clipboard';
 
 type MatchFormType = ɵTypedOrUntyped<MatchForm, ɵFormGroupValue<MatchForm>, any>;
 
