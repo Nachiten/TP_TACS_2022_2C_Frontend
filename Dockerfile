@@ -1,5 +1,5 @@
 # Stage 1 - Build the app
-FROM node:alpine AS app-build
+FROM public.ecr.aws/q2m3a4j6/tacs-nginx-alpine AS app-build
 
 WORKDIR /app
 
@@ -15,7 +15,7 @@ ARG buildtype=docker
 RUN npm run build-$buildtype
 
 # Stage 2 - Run the app
-FROM nginx:alpine
+FROM public.ecr.aws/q2m3a4j6/tacs-node-alpine
 COPY --from=app-build /app/dist/tp-tacs-2022-2c-grupo-2-frontend /usr/share/nginx/html
 COPY --from=app-build /app/nginx/default.conf /etc/nginx/conf.d/default.conf
 
