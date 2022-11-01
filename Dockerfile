@@ -10,7 +10,9 @@ COPY ["./angular.json", "./tsconfig.json", "./tsconfig.app.json", "./"]
 COPY nginx/default.conf nginx/default.conf
 COPY src/ src/
 
-RUN npm run build
+ARG buildtype=docker
+
+RUN npm run build-$buildtype
 
 # Stage 2 - Run the app
 FROM nginx:alpine
