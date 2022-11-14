@@ -1,6 +1,6 @@
 {
   "name": "tp-tacs-2022-2c-grupo-2-frontend",
-  "version": "3.0",
+  "version": "5.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
